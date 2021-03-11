@@ -40,8 +40,6 @@ def encrypt(key: Fernet, message: str) -> bytes:
 
     token = key.encrypt(message.encode())
 
-    print("Message:", message, "is encrypted as", token.decode())
-
     return token
 
 
@@ -57,36 +55,3 @@ def decrypt(key: Fernet, encrypted_message: bytes) -> str:
     decrypted_message = key.decrypt(encrypted_message)
 
     return decrypted_message.decode()
-
-
-# def old():
-#     fh = open(key, 'r')
-#
-#     key = fh.read()
-#     fh.close()
-#
-#     f = Fernet(key)
-#
-#     token = f.encrypt(message.encode())
-#
-#     print(token)
-#
-#     print(f.decrypt(token))
-
-def main():
-    filename = "keyfile"
-    message = "Hi HoboCat!"
-
-    generate_key(filename)
-
-    pre_key = get_key_from_file(filename)
-    key = Fernet(pre_key)
-
-    encrypted_message = encrypt(key, message)
-
-    decrypted_message = decrypt(key, encrypted_message)
-    print("Decrypted message is:", decrypted_message)
-
-
-if __name__ == '__main__':
-    main()
