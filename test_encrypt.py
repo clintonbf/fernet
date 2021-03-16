@@ -16,7 +16,7 @@ def do_normal_test():
     filename = "keyfile"
     message = "Hi HoboCat!"
 
-    generate_key(filename)
+    generate_key()
 
     pre_key = get_key_from_file(filename)
     key = Fernet(pre_key)

@@ -2,31 +2,29 @@
 
 from cryptography.fernet import Fernet
 
+KEY_FILENAME = 'keyfile'
 
-def generate_key(filename: str) -> None:
+def generate_key() -> bytes:
     f"""
     Generates am assymetric cryptographic key file.
-    :param filename: filename to write key to
-    :return: {None}
+    :return: {bytes}
     """
     key = Fernet.generate_key()
 
-    fh = open(filename, 'w')
-    fh.write(key.decode())
-    fh.close()
+    return key
 
 
-def get_key_from_file(filename: str) -> str:
+def get_key_from_file(filename: str) -> Fernet:
     f"""
     Gets an encryption key from a file.
 
     :param filename: filename for the encryption key
-    :return: {str} encryption key
+    :return: {Fernet} encryption key
     """
     fh = open(filename, 'r')
     key = fh.read()
     fh.close()
-    return key
+    return Fernet(key)
 
 
 def encrypt(key: Fernet, message: str) -> bytes:
