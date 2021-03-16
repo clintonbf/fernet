@@ -26,7 +26,7 @@ def create_arguments() -> argparse:
     """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--key", help="file with encryption key. Default = 'keyfile'")
+    parser.add_argument("--keyfile", help="file with encryption key. Default = 'keyfile'")
     parser.add_argument("filename", help="file to decrypt")
 
     return parser
@@ -49,7 +49,7 @@ def get_message(filename: str) -> bytes:
 def main():
     args = create_arguments().parse_args()
 
-    keyfile = args.key if args.key else KEY_FILENAME
+    keyfile = args.keyfile if args.keyfile else KEY_FILENAME
 
     key = get_key_from_file(keyfile)
 

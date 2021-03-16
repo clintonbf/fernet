@@ -18,8 +18,7 @@ def do_normal_test():
 
     generate_key()
 
-    pre_key = get_key_from_file(filename)
-    key = Fernet(pre_key)
+    key = get_key_from_file(filename)
 
     encrypted_message = encrypt(key, message)
     print("Message:", message, "is encrypted as", encrypted_message.decode())
@@ -35,8 +34,7 @@ def do_node_test():
     :return:
     """
     filename = "keyfile"
-    pre_key = get_key_from_file(filename)
-    key = Fernet(pre_key)
+    key = get_key_from_file(filename)
 
     encrypted_message = unpad("i4VedWYyZvLIBRWgJp8krIln1K2K1Bz6Derb9sDkDt0=")
     decrypted_message = decrypt(key, bytes(encrypted_message, 'utf8'))
